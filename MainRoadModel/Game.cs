@@ -16,11 +16,15 @@ namespace MainRoadModel
         /// <summary>
         /// Size of tile grid
         /// </summary>
-        public const int GRIDSIZE = 256;
+        public const int GRID_SIZE = 256;
         /// <summary>
         /// Size of cell in meters
         /// </summary>
         public const float METERS_PER_UNIT = 12.8f;
+        /// <summary>
+        /// Tile size in pixels
+        /// </summary>
+        public const float TILE_SIZE = 128f;
 
         public const string DEF_FILENAME = "mainroad.bin";
 
