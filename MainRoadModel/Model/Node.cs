@@ -17,8 +17,8 @@ namespace MainRoadModel.Model
         public int CellY;
 
         /// <summary>
-        /// Nodes linked to this node
+        /// Roads to other nodes
         /// </summary>
-        public LinkedList<Node> Nodes;
+        public LinkedList<Road> Roads = new LinkedList<Road>();
     }
 }
