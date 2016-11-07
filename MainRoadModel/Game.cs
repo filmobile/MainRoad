@@ -10,13 +10,16 @@ using MainRoadModel.Model;
 
 namespace MainRoadModel
 {
-    static class Game
+    public static class Game
     {
+        /// <summary>
+        /// State
+        /// </summary>
         public static GameState State { get; set; }
         /// <summary>
         /// Size of tile grid
         /// </summary>
-        public const int GRID_SIZE = 256;
+        public const int GRID_SIZE = 128;
         /// <summary>
         /// Size of cell in meters
         /// </summary>

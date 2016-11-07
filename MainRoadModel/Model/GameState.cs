@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +10,22 @@ namespace MainRoadModel.Model
     /// Game state
     /// </summary>
     [Serializable]
-    class GameState
+    public class GameState
     {
         /// <summary>
         /// Grid of tiles
         /// </summary>
         public Cell[,] Cells { get; private set; }
 
+        /// <summary>
+        /// Buildings and roads graph
+        /// </summary>
+        public LinkedList<Node> Nodes { get; private set; }
+
         public GameState()
         {
             Cells = new Cell[Game.GRID_SIZE, Game.GRID_SIZE];
+            Nodes = new LinkedList<Node>();
         }
 
         /// <summary>

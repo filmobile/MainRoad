@@ -7,10 +7,11 @@ namespace MainRoadModel.Model
     /// Cell of tile's grid
     /// </summary>
     [Serializable]
-    class Cell
+    public class Cell
     {
         public int CellX { get; set; }
         public int CellY { get; set; }
         public LinkedList<Tile> Tiles { get; set; }
+        public Node Node { get; set; }
     }
 }

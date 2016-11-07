@@ -10,7 +10,7 @@ namespace MainRoadModel.Model
     /// Graph's node
     /// </summary>
     [Serializable]
-    class Node
+    public class Node
     {
         //coordinates in grid
         public int CellX;

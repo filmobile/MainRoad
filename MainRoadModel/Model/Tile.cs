@@ -7,7 +7,7 @@ namespace MainRoadModel.Model
     /// Tile
     /// </summary>
     [Serializable]
-    class Tile
+    public class Tile
     {
         public string Name;
 
