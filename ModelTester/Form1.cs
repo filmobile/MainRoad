@@ -26,7 +26,15 @@ namespace ModelTester
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.TranslateTransform(5 - HorizontalScroll.Value,  5 - VerticalScroll.Value);
-            e.Graphics.ScaleTransform(3, 3);
+            e.Graphics.ScaleTransform(5, 5);
+
+            //draw grid
+            using (var pen = new Pen(Color.Silver, 0.1f))
+                for (int x = 0; x < Game.GRID_SIZE; x++)
+                    e.Graphics.DrawLine(pen, x - 0.5f, -0.5f, x - 0.5f, Game.GRID_SIZE - 0.5f);
+            using (var pen = new Pen(Color.Silver, 0.1f))
+                for (int y = 0; y < Game.GRID_SIZE; y++)
+                    e.Graphics.DrawLine(pen, 0 - 0.5f, y - 0.5f, Game.GRID_SIZE - 0.5f, y - 0.5f);
 
             //draw graph
             foreach (var n in Game.State.Nodes)
