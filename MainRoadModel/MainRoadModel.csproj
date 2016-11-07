@@ -46,7 +46,6 @@
     <Compile Include="Model\GameState.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\Road.cs" />
-    <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BitmapCache.cs" />

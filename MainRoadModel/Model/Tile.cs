@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace MainRoadModel.Model
 {
@@ -8,25 +9,27 @@ namespace MainRoadModel.Model
     [Serializable]
     class Tile
     {
-        /// <summary>
-        /// Parent cell
-        /// </summary>
-        public Cell ParentCell { get; set; }
+        public string Name;
 
-        /// <summary>
-        /// Visual image represents the tile
-        /// </summary>
         [NonSerialized]
-        public Sprite Sprite;
+        private readonly Bitmap _bitmap;
 
         /// <summary>
-        /// Order drawing relative to other tiles in this cell
+        /// Bitmap
         /// </summary>
-        public float ZOrder = 0;
+        public Bitmap Bitmap
+        {
+            get { return _bitmap ?? BitmapCache.GetBitmap(Name); }
+        }
 
         /// <summary>
-        /// Type of the tile
+        /// Rotate angle when drawing
         /// </summary>
-        public string Type;
+        public float Angle;
+
+        /// <summary>
+        /// Offset in pixels relative to cell centre
+        /// </summary>
+        public PointF Offset;
     }
 }
