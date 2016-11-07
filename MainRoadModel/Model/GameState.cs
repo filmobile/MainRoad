@@ -20,5 +20,20 @@ namespace MainRoadModel.Model
         {
             Cells = new Cell[Game.GRID_SIZE, Game.GRID_SIZE];
         }
+
+        /// <summary>
+        /// Returns cell by coordinates (with boundaries control)
+        /// </summary>
+        public Cell this[int cellX, int cellY]
+        {
+            get
+            {
+                if (cellX< 0) cellX = 0;
+                if (cellY< 0) cellY = 0;
+                if (cellX >= Game.GRID_SIZE) cellX = Game.GRID_SIZE - 1;
+                if (cellY >= Game.GRID_SIZE) cellY = Game.GRID_SIZE - 1;
+                return Cells[cellX, cellY];
+            }
+        }
     }
 }

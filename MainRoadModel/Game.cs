@@ -26,7 +26,7 @@ namespace MainRoadModel
         /// </summary>
         public const float TILE_SIZE = 128f;
 
-        public const string DEF_FILENAME = "mainroad.bin";
+        const string DEF_FILENAME = "mainroad.bin";
 
         public static void Load(string name = DEF_FILENAME)
         {
