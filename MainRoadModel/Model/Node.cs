@@ -17,8 +17,22 @@ namespace MainRoadModel.Model
         public int CellY;
 
         /// <summary>
-        /// Roads to other nodes
+        /// Roads from other nodes (in)
         /// </summary>
-        public LinkedList<Road> Roads = new LinkedList<Road>();
+        public LinkedList<Road> RoadsIn = new LinkedList<Road>();
+
+        /// <summary>
+        /// Roads to other nodes (out)
+        /// </summary>
+        public LinkedList<Road> RoadsOut = new LinkedList<Road>();
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string Name;
+
+        public override string ToString()
+        {
+            return string.Format("x={0} y={1}", CellX, CellY);
+        }
     }
 }
