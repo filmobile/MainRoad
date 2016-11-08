@@ -1,6 +1,6 @@
 ﻿namespace ModelTester
 {
-    partial class Form1
+    partial class GraphForm
     {
         /// <summary>
         /// Required designer variable.

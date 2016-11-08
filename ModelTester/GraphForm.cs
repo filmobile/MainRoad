@@ -11,9 +11,9 @@ using MainRoadModel;
 
 namespace ModelTester
 {
-    public partial class Form1 : Form
+    public partial class GraphForm : Form
     {
-        public Form1()
+        public GraphForm()
         {
             InitializeComponent();
 
