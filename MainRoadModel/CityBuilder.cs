@@ -108,14 +108,7 @@ namespace MainRoadModel
 
         private static void CreateCellsAndRegularGraph(GameState state)
         {
-            //create cells
-            for (int y = 0; y < Game.GRID_SIZE; y += 1)
-            for (int x = 0; x < Game.GRID_SIZE; x += 1)
-            {
-                state.Cells[x, y] = new Cell();
-            }
-
-            //create regular graph
+    //create regular graph
             for (int y = 0; y < Game.GRID_SIZE; y += Game.NODE_STEP)
             for (int x = 0; x < Game.GRID_SIZE; x += Game.NODE_STEP)
             {
@@ -126,7 +119,7 @@ namespace MainRoadModel
 
             //create regular roads (edges between nodes)
             for (int y = 0; y < Game.GRID_SIZE - Game.NODE_STEP; y += Game.NODE_STEP)
-                for (int x = 0; x < Game.GRID_SIZE - Game.NODE_STEP; x += Game.NODE_STEP)
+            for (int x = 0; x < Game.GRID_SIZE - Game.NODE_STEP; x += Game.NODE_STEP)
                 {
                     var n1 = state.Cells[x, y].Node;
                     var n2 = state.Cells[x + Game.NODE_STEP, y].Node;
@@ -136,7 +129,7 @@ namespace MainRoadModel
                 }
 
             //last roads
-            for (int x = 0; x < Game.GRID_SIZE - Game.NODE_STEP; x += Game.NODE_STEP)
+           for (int x = 0; x < Game.GRID_SIZE - Game.NODE_STEP; x += Game.NODE_STEP)
             {
                 var n1 = state.Cells[x, Game.GRID_SIZE - Game.NODE_STEP].Node;
                 var n2 = state.Cells[x + Game.NODE_STEP, Game.GRID_SIZE - Game.NODE_STEP].Node;

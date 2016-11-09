@@ -13,5 +13,10 @@ namespace MainRoadModel.Model
         public int CellY { get; set; }
         public LinkedList<Tile> Tiles { get; set; }
         public Node Node { get; set; }
+
+        public Cell()
+        {
+            Tiles = new LinkedList<Tile>();
+        }
     }
 }

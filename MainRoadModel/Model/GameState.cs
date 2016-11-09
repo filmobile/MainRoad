@@ -26,8 +26,15 @@ namespace MainRoadModel.Model
         {
             Cells = new Cell[Game.GRID_SIZE, Game.GRID_SIZE];
             Nodes = new LinkedList<Node>();
+            for (int i = 0; i < Game.GRID_SIZE; i++)
+                for (int j = 0; j < Game.GRID_SIZE; j++)
+                {
+                    Cells[i, j] = new Cell() { CellX =i,CellY = j};
+                }
         }
 
+        static Cell EmptyCell = new Cell();
+        
         /// <summary>
         /// Returns cell by coordinates (with boundaries control)
         /// </summary>
@@ -35,10 +42,10 @@ namespace MainRoadModel.Model
         {
             get
             {
-                if (cellX< 0) cellX = 0;
-                if (cellY< 0) cellY = 0;
-                if (cellX >= Game.GRID_SIZE) cellX = Game.GRID_SIZE - 1;
-                if (cellY >= Game.GRID_SIZE) cellY = Game.GRID_SIZE - 1;
+                if (cellX< 0) return EmptyCell;
+                if (cellY< 0) return EmptyCell;
+                if (cellX >= Game.GRID_SIZE) return EmptyCell;
+                if (cellY >= Game.GRID_SIZE) return EmptyCell;
                 return Cells[cellX, cellY];
             }
         }
