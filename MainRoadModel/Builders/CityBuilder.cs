@@ -11,8 +11,8 @@ namespace MainRoadModel
     {
         static Random rnd;
 
-        static int DecimationCount = Game.GRID_SIZE * Game.GRID_SIZE / 70;
-        static int BuildingsCount = Game.GRID_SIZE * Game.GRID_SIZE / 100;
+        static int DecimationCount = 400;
+        static int BuildingsCount = 40;
 
         public static void Create(int randomSeed = 0)
         {
@@ -26,18 +26,33 @@ namespace MainRoadModel
             CreateCellsAndRegularGraph(state);
 
             //Graph decimation
-            MakeDecimation(DecimationCount);
-            MakeBuildings(BuildingsCount);
+            //MakeNodeDecimation(DecimationCount);
+            MakeRoadDecimation(DecimationCount);
+            MakeBuildings2(BuildingsCount);
+            //MakeBuildings(BuildingsCount);
+
+            //удаление всех тупиков
+            while(RemoveNodeWithSingleRoads());
 
             //remove nodes w/o roads
-            foreach(var n in Game.State.Nodes.ToArray())
-                if (n.RoadsIn.Count == 0)
+            foreach (var n in Game.State.Nodes.ToArray())
+                if (n.RoadsOut.Count == 0)
                 {
                     RemoveNode(n);
                 }
         }
 
-        static void MakeDecimation(int count)
+        private static bool RemoveNodeWithSingleRoads()
+        {
+            var list = GetEndRoads().Where(r=>r.From.Name == null).ToArray();//if there are no buildings
+            if (list.Length == 0) return false;
+            foreach (var r in list)
+                RemoveNode(r.From);
+
+            return true;
+        }
+
+        static void MakeNodeDecimation(int count)
         {
             for (int i = 0; i < count; i++)
             {
@@ -51,6 +66,31 @@ namespace MainRoadModel
                     continue; // do not remove on bounds of map
 
                 RemoveNode(n);
+            }
+        }
+
+        static void MakeRoadDecimation(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var x = rnd.Next(Game.GRID_SIZE / Game.NODE_STEP) * Game.NODE_STEP;
+                var y = rnd.Next(Game.GRID_SIZE / Game.NODE_STEP) * Game.NODE_STEP;
+                var n = Game.State[x, y].Node;
+                if (n == null)
+                    continue;
+
+                if (n.CellX == 0 || n.CellY == 0 || n.CellX == Game.GRID_SIZE - Game.NODE_STEP || n.CellY == Game.GRID_SIZE - Game.NODE_STEP)
+                    continue; // do not remove on bounds of map
+
+                var c = n.RoadsOut.Count;
+                if (c > 0)
+                {
+                    var index = rnd.Next(c);
+                    var road = n.RoadsOut.ElementAt(index);
+                    RemoveRoad(road.From, road.To);
+                    RemoveRoad(road.To, road.From);
+                }
+                
             }
         }
 
@@ -71,6 +111,33 @@ namespace MainRoadModel
         {
             r.From.RoadsOut.Remove(r);
             r.To.RoadsIn.Remove(r);
+        }
+
+        static void RemoveRoad(Node from, Node to)
+        {
+            var roads = from.RoadsOut.Where(r => r.To == to).ToArray();
+            foreach (var road in roads)
+                RemoveRoad(road);
+        }
+
+        static IEnumerable<Road> GetEndRoads()//получить список всех тупиков
+        {
+            foreach (var n in Game.State.Nodes)
+            if(n.RoadsOut.Count == 1)
+                yield return n.RoadsOut.First.Value;
+        }
+
+        static void MakeBuildings2(int count)
+        {
+            //get list of single road nodes
+            var nodes = GetEndRoads().Where(r=>r.To.RoadsOut.Count > 1).Select(r => r.From).ToList();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (nodes.Count == 0) break;
+                var index = rnd.Next(nodes.Count);
+                nodes[index].Name = "building";
+            }
         }
 
         static void MakeBuildings(int count)

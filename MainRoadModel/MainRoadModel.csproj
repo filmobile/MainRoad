@@ -41,8 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityBuilder.cs" />
+    <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Helpers\AStar.cs" />
+    <Compile Include="Helpers\FastRnd.cs" />
+    <Compile Include="Helpers\PointFHelper.cs" />
+    <Compile Include="Model\Car.cs" />
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\GameState.cs" />
     <Compile Include="Model\Node.cs" />
@@ -51,8 +56,8 @@
     <Compile Include="Model\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BitmapCache.cs" />
-    <Compile Include="TailBuilder.cs" />
-    <Compile Include="TopologyHelper.cs" />
+    <Compile Include="Builders\TailBuilder.cs" />
+    <Compile Include="Helpers\TopologyHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

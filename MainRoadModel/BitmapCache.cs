@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 namespace MainRoadModel
 {
     /// <summary>
-    /// Loads and Stores bitmaps
+    /// Loads and caches bitmaps
     /// </summary>
     public static class BitmapCache
     {
         //cache of bitmaps
         static Dictionary<Id, Bitmap> cache = new Dictionary<Id, Bitmap>();
+
+        private static Bitmap Empty = new Bitmap(1, 1);
 
         /// <summary>
         /// Get bitmap from file or cache
@@ -26,13 +28,17 @@ namespace MainRoadModel
             var id = new Id { Name = shortFileName, Rotate = rotate };
             if (!cache.TryGetValue(id, out bmp))
             {
-                using (var temp = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sprites\\" + shortFileName)))
+                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sprites\\" + shortFileName);
+                if (!File.Exists(path)) return Empty;
+                using (var temp = new Bitmap(path))
                 {
                     temp.SetResolution(96, 96);
                     //change format to PARGB32
                     bmp = new Bitmap(temp.Width, temp.Height, PixelFormat.Format32bppPArgb);
                     using (Graphics gr = Graphics.FromImage(bmp))
+                    {
                         gr.DrawImageUnscaled(temp, new Rectangle(0, 0, temp.Width, temp.Height));
+                    }
                     //rotate and flip
                     bmp.RotateFlip(rotate);
                 }
