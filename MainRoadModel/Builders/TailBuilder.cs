@@ -32,7 +32,11 @@ namespace MainRoadModel
                     switch (code)
                     {
                         case 0101: tile.Name = "mainroad.png"; break;
+
                         case 1111: tile.Name = "sixcrossroad.png"; break;
+
+                     
+
                         case 1010: tile.Name = "mainroad.png"; tile.Rotate = RotateFlipType.Rotate270FlipNone; break;
                         case 0110: tile.Name = "nineradius.png"; break;
                         case 1100: tile.Name = "nineradius.png"; tile.Rotate = RotateFlipType.Rotate270FlipNone; break;
@@ -40,12 +44,15 @@ namespace MainRoadModel
                         case 1110: tile.Name = "thirdTroad.png"; tile.Rotate = RotateFlipType.Rotate270FlipNone; break;
                         case 1011: tile.Name = "thirdTroad.png"; tile.Rotate = RotateFlipType.Rotate90FlipNone; break;
                         case 1001: tile.Name = "nineradius.png"; tile.Rotate = RotateFlipType.Rotate180FlipNone; break;
+
                         case 0111: tile.Name = "thirdTroad.png";  break;
+
+                      
                         case 0011: tile.Name = "nineradius.png"; tile.Rotate = RotateFlipType.Rotate90FlipNone; break;
                         case 1000: tile.Name = "endofroad.png"; tile.Rotate = RotateFlipType.Rotate90FlipNone; break;
                         case 0010: tile.Name = "endofroad.png"; tile.Rotate = RotateFlipType.Rotate270FlipNone; break;
                         case 0100: tile.Name = "endofroad.png"; tile.Rotate = RotateFlipType.Rotate180FlipNone; break;
-                        case 0001: tile.Name = "endofroad.png";  break;
+                        case 0001: tile.Name = "endofroad.png"; break;
 
 
                     }      

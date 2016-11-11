@@ -16,10 +16,13 @@ namespace MainRoadModel
         /// State
         /// </summary>
         public static GameState State { get; set; }
+
+        public static CarsController CarsController { get; set; }
+
         /// <summary>
         /// Size of tile grid
         /// </summary>
-        public const int GRID_SIZE = 128;
+        public const int GRID_SIZE = 120;
         /// <summary>
         /// Size of cell in meters
         /// </summary>
@@ -28,8 +31,15 @@ namespace MainRoadModel
         /// Tile size in pixels
         /// </summary>
         public const float TILE_SIZE = 128f;
+        /// <summary>
+        /// Node step (GRID_SIZE must be divided by NODE_STEP)
+        /// </summary>
+        public const int NODE_STEP = 6;
 
-        public const int NODE_STEP = 4;
+        /// <summary>
+        /// Total car count on the roads
+        /// </summary>
+        public static int CarCount = 500;
 
         const string DEF_FILENAME = "mainroad.bin";
 

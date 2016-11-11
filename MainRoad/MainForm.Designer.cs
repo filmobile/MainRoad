@@ -28,11 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.tmUpdate = new System.Windows.Forms.Timer(this.components);
+            this.tmFPS = new System.Windows.Forms.Timer(this.components);
             this.pnGame = new MainRoad.Controls.GamePanel();
             this.SuspendLayout();
             // 
+            // tmUpdate
+            // 
+            this.tmUpdate.Enabled = true;
+            this.tmUpdate.Interval = 20;
+            this.tmUpdate.Tick += new System.EventHandler(this.tmUpdate_Tick);
+            // 
+            // tmFPS
+            // 
+            this.tmFPS.Enabled = true;
+            this.tmFPS.Interval = 1000;
+            this.tmFPS.Tick += new System.EventHandler(this.tmFPS_Tick);
+            // 
             // pnGame
             // 
+            this.pnGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnGame.BackgroundImage")));
             this.pnGame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnGame.Location = new System.Drawing.Point(0, 0);
             this.pnGame.Name = "pnGame";
@@ -46,7 +63,7 @@
             this.ClientSize = new System.Drawing.Size(551, 303);
             this.Controls.Add(this.pnGame);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
@@ -54,6 +71,8 @@
         #endregion
 
         private Controls.GamePanel pnGame;
+        private System.Windows.Forms.Timer tmUpdate;
+        private System.Windows.Forms.Timer tmFPS;
     }
 }
 

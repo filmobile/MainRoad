@@ -22,10 +22,17 @@ namespace MainRoadModel.Model
         /// </summary>
         public LinkedList<Node> Nodes { get; private set; }
 
+        /// <summary>
+        /// Cars
+        /// </summary>
+        public LinkedList<Car> Cars { get; private set; }
+
         public GameState()
         {
             Cells = new Cell[Game.GRID_SIZE, Game.GRID_SIZE];
             Nodes = new LinkedList<Node>();
+            Cars = new LinkedList<Car>();
+
             for (int i = 0; i < Game.GRID_SIZE; i++)
                 for (int j = 0; j < Game.GRID_SIZE; j++)
                 {
